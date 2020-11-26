@@ -3,6 +3,9 @@ let expenseDivList = document.querySelector(".expenses__list");
 let availableBudget = document.querySelector("#availableBudget");
 let counter = 2;
 
+//
+
+//
 class Transaction {
   constructor(description, amount) {
     this.description = description;
@@ -78,6 +81,13 @@ class TransactionList {
 
     var iconBtn = document.createElement("i");
     iconBtn.className = "ion-ios-close-outline";
+    //
+    // iconBtn.id = "iconBtn";
+    // deleteBtn.addEventListener("click", (e) =>
+    //   console.log(e.target.parentNode)
+    // );
+
+    //
 
     deleteBtn.appendChild(iconBtn);
     deleteDiv.appendChild(deleteBtn);
@@ -161,6 +171,8 @@ function recordUiUpdater(income, expense) {
   document.querySelector(
     ".budget__expenses--value"
   ).innerHTML = `${grossExpense}.00`;
+  description.value = "";
+  amount.value = 0;
 }
 
 btn.addEventListener("click", function (e) {
