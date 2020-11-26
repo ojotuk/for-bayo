@@ -4,13 +4,19 @@ let availableBudget = document.querySelector("#availableBudget");
 let counter = 2;
 
 //
+let today = new Date().toLocaleDateString("en-US", {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 
 //
 class Transaction {
   constructor(description, amount) {
     this.description = description;
     this.amount = amount;
-    this.date = new Date().toISOString().slice(0, 10);
+    this.date = today;
     this.id = counter++;
   }
 }
@@ -109,7 +115,7 @@ class TransactionList {
 
     var dateDiv = document.createElement("div");
     dateDiv.className = "item__date";
-    dateDiv.innerHTML = new Date().toISOString().slice(0, 10);
+    dateDiv.innerHTML = today;
 
     var parentDiv = document.createElement("div");
     parentDiv.className = "item";
@@ -154,9 +160,7 @@ const transactionList = new TransactionList();
 let description = document.querySelector(".add__description");
 let amount = document.querySelector(".add__value");
 let btn = document.querySelector(".add__btn");
-document.querySelector(
-  ".budget__title--month"
-).innerHTML = new Date().toISOString().slice(0, 10);
+document.querySelector(".budget__title--month").innerHTML = today;
 
 ///
 function recordUiUpdater(income, expense) {
@@ -172,7 +176,7 @@ function recordUiUpdater(income, expense) {
     eachExpense = eachExpense + Number(transaction.amount);
     return eachExpense;
   });
-  console.log(totalIncome, totalExpense);
+  //   console.log(totalIncome, totalExpense);
   if (totalIncome.length > 0) {
     grossIncome = totalIncome[totalIncome.length - 1];
   }
@@ -195,6 +199,6 @@ btn.addEventListener("click", function (e) {
   else {
     transactionList.addNewTransaction(description.value, amount.value);
     recordUiUpdater(transactionList.incomeList, transactionList.expenseList);
-    console.log(transactionList.deleteBtn);
+    // console.log(transactionList.deleteBtn);
   }
 });
