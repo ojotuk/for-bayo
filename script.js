@@ -139,7 +139,8 @@ class TransactionList {
   removeTransaction(id) {
     //   alert(`${id}`);
     this.expenseList = this.expenseList.filter((list) => list.id !== id);
-    console.log(this.expenseList);
+    this.incomeList = this.incomeList.filter((list) => list.id !== id);
+    // console.log(this.expenseList);
     recordUiUpdater(this.incomeList, this.expenseList);
     // this.parentDiv.innerHTML = "";
   }
