@@ -90,10 +90,11 @@ class TransactionList {
     var iconBtn = document.createElement("i");
     iconBtn.className = "ion-ios-close-outline";
     //
-    // iconBtn.id = "iconBtn";
-    // deleteBtn.addEventListener("click", (e) =>
-    //   console.log(e.target.parentNode)
-    // );
+    iconBtn.id = "iconBtn";
+    iconBtn.addEventListener("click", (e) => {
+      this.removeTransaction(e.target.attributes.data.nodeValue);
+      parentDiv.remove(); //remove the div
+    });
 
     //
 
@@ -113,7 +114,9 @@ class TransactionList {
     var parentDiv = document.createElement("div");
     parentDiv.className = "item";
     parentDiv.setAttribute("data-transaction-id", transaction.id);
-
+    //
+    iconBtn.setAttribute("data", transaction.id);
+    //
     parentDiv.appendChild(descrDiv);
     parentDiv.appendChild(rightDiv);
     parentDiv.appendChild(dateDiv);
@@ -128,7 +131,11 @@ class TransactionList {
   }
 
   removeTransaction(id) {
-    alert("remove element for id");
+    //   alert(`${id}`);
+    this.expenseList = this.expenseList.filter((list) => list.id !== id);
+    console.log(this.expenseList);
+    recordUiUpdater(this.incomeList, this.expenseList);
+    // this.parentDiv.innerHTML = "";
   }
 
   addNewTransaction(description, amount) {
