@@ -65,9 +65,17 @@ class TransactionList {
         let t = this.incomeList[a];
         total += parseInt(t.amount);
       }
-      let perc = (amount.value / total) * 100;
-      percentDiv.innerHTML = perc.toFixed(2);
-      +"%";
+      let newGrossTotal = total;
+      let perc;
+      if (newGrossTotal < 1) {
+        perc = amount.value;
+        percentDiv.innerHTML = `${Math.abs(perc)}.00 -%`;
+      } else {
+        perc = (amount.value / total) * 100;
+        percentDiv.innerHTML = `${Math.abs(perc)}.00 -%`;
+      }
+
+      //   +"%";
     }
 
     var deleteDiv = document.createElement("div");
@@ -180,6 +188,6 @@ btn.addEventListener("click", function (e) {
   else {
     transactionList.addNewTransaction(description.value, amount.value);
     recordUiUpdater(transactionList.incomeList, transactionList.expenseList);
-    // console.log(transactionList.incomeList, transactionList.expenseList);
+    console.log(transactionList.deleteBtn);
   }
 });
