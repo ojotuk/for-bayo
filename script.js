@@ -172,7 +172,7 @@ function recordUiUpdater(income, expense) {
     ".budget__expenses--value"
   ).innerHTML = `${grossExpense}.00`;
   description.value = "";
-  amount.value = 0;
+  amount.value = "";
 }
 
 btn.addEventListener("click", function (e) {
